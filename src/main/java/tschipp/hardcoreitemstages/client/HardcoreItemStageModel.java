@@ -39,7 +39,7 @@ public class HardcoreItemStageModel implements IBakedModel
 	public HardcoreItemStageModel(IBakedModel original)
 	{
 		originalModel = original;
-		override = new OverrideList(Collections.EMPTY_LIST, originalModel.getOverrides());
+		override = new OverrideList(Collections.EMPTY_LIST, originalModel.getOverrides(), original);
 	}
 
 	@Override
@@ -101,11 +101,13 @@ public class HardcoreItemStageModel implements IBakedModel
 	{
 
 		private ItemOverrideList original;
+		private IBakedModel originalModel;
 		
-		public OverrideList(List<ItemOverride> overridesIn, ItemOverrideList original)
+		public OverrideList(List<ItemOverride> overridesIn, ItemOverrideList original, IBakedModel originalModel)
 		{
 			super(overridesIn);
 			this.original = original;
+			this.originalModel = originalModel;
 		}
 
 		@Override
@@ -131,7 +133,7 @@ public class HardcoreItemStageModel implements IBakedModel
 
 			}
 
-			return original.handleItemState(originalModel, stack, world, entity);
+			return original.handleItemState(this.originalModel, stack, world, entity);
 		}
 
 	}
