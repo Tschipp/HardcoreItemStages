@@ -137,7 +137,7 @@ public class HardcoreItemStageModel implements IBakedModel
 
 			}
 
-			return original.handleItemState(originalModel, stack, world, entity);
+			return original.handleItemState(this.originalModel, stack, world, entity);
 		}
 		
 		@Override
