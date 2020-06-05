@@ -7,6 +7,8 @@ import javax.vecmath.Matrix4f;
 
 import org.apache.commons.lang3.tuple.Pair;
 
+import com.google.common.collect.ImmutableList;
+
 import net.darkhax.gamestages.GameStageHelper;
 import net.darkhax.itemstages.ItemStages;
 import net.minecraft.block.state.IBlockState;
@@ -23,6 +25,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -39,7 +42,8 @@ public class HardcoreItemStageModel implements IBakedModel
 	public HardcoreItemStageModel(IBakedModel original)
 	{
 		originalModel = original;
-		override = new OverrideList(Collections.EMPTY_LIST, originalModel.getOverrides(), original);
+		
+		override = new OverrideList(originalModel.getOverrides().getOverrides(), originalModel.getOverrides(), original);
 	}
 
 	@Override
@@ -95,7 +99,7 @@ public class HardcoreItemStageModel implements IBakedModel
 	{
 		return override;
 	}
-
+	
 	@SideOnly(Side.CLIENT)
 	public static class OverrideList extends ItemOverrideList
 	{
@@ -133,9 +137,20 @@ public class HardcoreItemStageModel implements IBakedModel
 
 			}
 
-			return original.handleItemState(this.originalModel, stack, world, entity);
+			return original.handleItemState(originalModel, stack, world, entity);
 		}
-
+		
+		@Override
+		public ResourceLocation applyOverride(ItemStack stack, World worldIn, EntityLivingBase entityIn)
+		{
+			return original.applyOverride(stack, worldIn, entityIn);
+		}
+		
+		@Override
+		public ImmutableList<ItemOverride> getOverrides()
+		{
+			return original.getOverrides();
+		}
 	}
 
 }

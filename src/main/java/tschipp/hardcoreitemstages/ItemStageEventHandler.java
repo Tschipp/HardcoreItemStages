@@ -29,10 +29,16 @@ public class ItemStageEventHandler
 		if (Config.hideUnknownItems)
 		{
 			IRegistry<ModelResourceLocation, IBakedModel> registry = event.getModelRegistry();
+
 			for (ModelResourceLocation key : registry.getKeys())
 			{
 				IBakedModel original = registry.getObject(key);
-				HardcoreItemStageModel model = new HardcoreItemStageModel(original);
+
+				if(Loader.isModLoaded("ctm") ? CTMCompat.isCTM(original) : false)
+					continue;
+				
+				IBakedModel model = new HardcoreItemStageModel(original);
+
 				registry.putObject(key, model);
 			}
 		}

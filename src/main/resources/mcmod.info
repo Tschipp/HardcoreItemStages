@@ -2,7 +2,7 @@
 {
   "modid" : "hardcoreitemstages",
   "name" : "Hardcore Item Stages",
-  "version" : "1.0", "mcversion" : "1.12.2",
+  "version" : "1.0.1", "mcversion" : "1.12.2",
   "url" : "",
   "credits" : "Darkhax for the original Item Stages mod",
   "authorList" : ["Tschipp"],

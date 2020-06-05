@@ -31,9 +31,14 @@ minecraft {
 repositories {
 	
     maven { url 'https://maven.mcmoddev.com' }
-	  maven {
-        url "http://maven.blamejared.com/"
+	
+	maven {
+        url "https://maven.blamejared.com/"
     }
+	
+	maven { // CTM
+		url "http://maven.tterrag.com/"
+	}
 }
 
 dependencies {
@@ -41,7 +46,7 @@ dependencies {
 	compile "net.darkhax.gamestages:GameStages-1.12.2:2.0.115"
 	compile "net.darkhax.itemstages:ItemStages-1.12.2:2.0.50"
 	compile "net.darkhax.bookshelf:Bookshelf-1.12.2:2.3.584"
-
+	deobfCompile "team.chisel.ctm:CTM:MC1.12.2-1.0.2.31"
 }
 
 processResources {
